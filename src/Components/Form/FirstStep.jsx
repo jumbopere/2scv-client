@@ -55,6 +55,12 @@ const FirstStep = ({ updateUser }) => {
         alignItems: "center",
       }}
     >
+        <Typography
+                sx={{ fontSize: 20, color: "#09279a", fontWeight: "bold" }}
+                gutterBottom
+              >
+                2 step Verification Challenge
+              </Typography>
       <Container component="main"  maxWidth="sm">
         <form onSubmit={handleSubmit}>
           <Box sx={{ mt: 3, mb: 3 }}>

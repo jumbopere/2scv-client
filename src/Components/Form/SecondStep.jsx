@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import {
   Button,
@@ -29,6 +30,8 @@ const SecondStep = ({ user, resetUser }) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(!showPassword);
 
+  const navigate = useNavigate()
+
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
     useFormik({
       initialValues: {
@@ -44,7 +47,7 @@ const SecondStep = ({ user, resetUser }) => {
             ...user,
           });
           localStorage.setItem("profile", JSON.stringify(response.data));
-          console.log(response, "success");
+          navigate("/profile")
         } catch (error) {
           console.log(error, "error message");
         }
@@ -62,6 +65,12 @@ const SecondStep = ({ user, resetUser }) => {
         alignItems: "center",
       }}
     >
+             <Typography
+                sx={{ fontSize: 20, color: "#09279a", fontWeight: "bold" }}
+                gutterBottom
+              >
+                2 step Verification Challenge
+              </Typography>
       <Container maxWidth="sm">
         <form onSubmit={handleSubmit}>
           <Box sx={{ mt: 3, mb: 3 }}>

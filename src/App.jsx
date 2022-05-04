@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Container } from "@mui/material";
 
-import { FirstStep, SecondStep } from "./Components";
+import { FirstStep, SecondStep, Final } from "./Components";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -12,6 +12,10 @@ const App = () => {
   const resetUser = () => {
     setUser({});
   };
+  const [userProfile, setUserProfile] = useState(
+    JSON.parse(localStorage.getItem("profile"))
+  );
+
 
   return (
     <BrowserRouter>
@@ -31,6 +35,7 @@ const App = () => {
               />
             }
           />
+         <Route path="profile" element={!userProfile ? <Navigate to="/" replace /> :  <Final setUserProfile={setUserProfile}  userProfile={userProfile}/>}  />
         </Routes>
       </Container>
     </BrowserRouter>
