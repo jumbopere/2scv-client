@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Box, Card, Typography, CardContent, Container } from "@mui/material";
 
-const Final = ({ setUserProfile, userProfile }) => {
+const Profile = ({ setUserProfile, userProfile }) => {
   return (
     <Box
       sx={{
@@ -54,4 +54,4 @@ const Final = ({ setUserProfile, userProfile }) => {
   );
 };
 
-export default Final;
+export default Profile;

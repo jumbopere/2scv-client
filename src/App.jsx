@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Container } from "@mui/material";
 
-import { FirstStep, SecondStep, Final } from "./Components";
+import { FirstStep, SecondStep, Profile } from "./Components";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -35,7 +35,7 @@ const App = () => {
               />
             }
           />
-         <Route path="profile" element={!userProfile ? <Navigate to="/" replace /> :  <Final setUserProfile={setUserProfile}  userProfile={userProfile}/>}  />
+         <Route path="profile" element={!userProfile ? <Navigate to="/" replace /> :  <Profile setUserProfile={setUserProfile}  userProfile={userProfile}/>}  />
         </Routes>
       </Container>
     </BrowserRouter>
