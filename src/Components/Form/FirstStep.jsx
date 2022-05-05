@@ -7,12 +7,10 @@ import {
   TextField,
   Box,
   Container,
-  CssBaseline,
-  Avatar,
   Grid,
   Typography,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+
 
 const validationSchema = yup.object({
   firstName: yup
