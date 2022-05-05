@@ -1,45 +1,45 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Container } from "@mui/material";
 
-function App() {
-  const [count, setCount] = useState(0)
+import { FirstStep, SecondStep, Profile } from "./Components";
+
+const App = () => {
+  const [user, setUser] = useState({});
+  const updateUser = (data) => {
+    setUser((prevUser) => ({ ...prevUser, ...data }));
+  };
+  const resetUser = () => {
+    setUser({});
+  };
+  const [userProfile, setUserProfile] = useState(
+    JSON.parse(localStorage.getItem("profile"))
+  );
+
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
-}
+    <BrowserRouter>
+      <Container maxWidth="lg">
+        <Routes>
+          <Route
+            path="/"
+            element={<FirstStep user={user} updateUser={updateUser} />}
+          />
+          <Route
+            path="second"
+            element={
+              <SecondStep
+                user={user}
+                updateUser={updateUser}
+                resetUser={resetUser}
+              />
+            }
+          />
+         <Route path="profile" element={!userProfile ? <Navigate to="/" replace /> :  <Profile setUserProfile={setUserProfile}  userProfile={userProfile}/>}  />
+        </Routes>
+      </Container>
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
